@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Type;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
@@ -27,8 +28,9 @@ class ProjectController extends Controller
     public function create()
     {
         $project = new Project();
+        $types = Type::select('label', 'id')->get();
 
-        return view('admin.projects.create', compact('project'));
+        return view('admin.projects.create', compact('project', 'types'));
     }
 
     /**
@@ -43,7 +45,8 @@ class ProjectController extends Controller
                 'language' => 'required|string',
                 'framework' => 'nullable|string',
                 'image' => 'nullable|image|mimes:png,jpg,jpeg',
-                'description' => 'nullable|string'
+                'description' => 'nullable|string',
+                'type_id' => 'nullable|exists:types,id'
             ],
             [
                 'title.required' => 'Il titolo è obbligatorio',
@@ -52,6 +55,7 @@ class ProjectController extends Controller
                 'title.unique' => 'Titolo già inserito, riprova con un altro titolo',
                 'image.image' => 'Il file inserito non è un\'immagine',
                 'language.required' => 'Il linguaggio usato è obbligatorio',
+                'type_id.exists' => 'Tipo non valido'
             ]
         );
 
@@ -86,7 +90,9 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        return view('admin.projects.edit', compact('project'));
+        $types = Type::select('label', 'id')->get();
+
+        return view('admin.projects.edit', compact('project', 'types'));
     }
 
     /**
@@ -101,7 +107,8 @@ class ProjectController extends Controller
                 'language' => 'required|string',
                 'framework' => 'nullable|string',
                 'image' => 'nullable|image|mimes:png,jpg,jpeg',
-                'description' => 'nullable|string'
+                'description' => 'nullable|string',
+                'type_id' => 'nullable|exists:types,id'
             ],
             [
                 'title.required' => 'Il titolo è obbligatorio',
@@ -110,6 +117,7 @@ class ProjectController extends Controller
                 'title.unique' => 'Titolo già inserito, riprova con un altro titolo',
                 'image.image' => 'Il file inserito non è un\'immagine',
                 'language.required' => 'Il linguaggio usato è obbligatorio',
+                'type_id.exists' => 'Tipo non valido'
             ]
         );
 
