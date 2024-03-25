@@ -32,7 +32,13 @@
                 <tr>
                     <th scope="row">{{$project->id}}</th>
                     <td>{{$project->title}}</td>
-                    <td>{{$project->type ? $project->type->label : '-'}}</td>
+                    <td>
+                      @if ($project->type)
+                        <span class="badge" style="background-color: {{$project->type->color}}">{{$project->type->label}}</span>
+                      @else
+                        Nessuno
+                      @endif
+                    </td>
                     <td>{{$project->language}}</td>
                     <td>{{$project->framework}}</td>
                     <td>{{$project->getFormattedDate('created_at', 'd-m-Y H:i:s ')}}</td>
