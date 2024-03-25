@@ -10,7 +10,7 @@
 
     @csrf
     <div class="row">
-        <div class="col">
+        <div class="col-6">
             <div class="mb-3">
                 <label for="title" class="form-label">Titolo</label>
                 <input value="{{old('title', $project->title)}}" type="text" class="form-control @error('title') is-invalid @elseif(old('title', '')) is-valid @enderror" id="title" name="title">
@@ -49,7 +49,21 @@
                 @enderror
             </div>
         </div>
-        <div class="col-11">
+        <div class="col-4">
+            <div class="mb-3">
+                <label for="type_id" class="form-label">Seleziona il Tipo</label>
+                <select class="form-select" id="type_id" name="type_id">
+                    <option value="">Nessuno</option>
+                    @foreach ($types as $type) 
+                    <option value="{{$type->id}}" @if(old('type_id', $project->type?->id) == $type->id) selected @endif>{{$type->label}}</option>
+                    @endforeach
+                  </select>
+                @error('type')   
+                    <div class="invalid-feedback">{{$message}}</div>
+                @enderror
+            </div>
+        </div>
+        <div class="col-7">
             <div class="mb-3">
                 <label for="image" class="form-label">Immagine</label>
                 <input value="{{old('image', $project->image)}}" type="file" class="form-control @error('image') is-invalid @elseif(old('image', '')) is-valid @enderror" id="image" name="image">
