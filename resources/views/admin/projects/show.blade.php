@@ -13,6 +13,9 @@
                     <div><strong>Framework:</strong> {{$project->framework}}</div>
                     <div class="mt-2"><strong>Creato il:</strong> {{$project->created_at}}</div>
                     <div><strong>Ultima modifica:</strong> {{$project->updated_at}}</div>
+                    @if ($project->type) 
+                    <div><strong>Tipo:</strong> {{$project->type->label}}</div>
+                    @endif
                 </div>
                 <div class="col">
                     <h3>{{$project->title}}</h3>
