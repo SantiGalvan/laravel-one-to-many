@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 use App\Http\Controllers\Guest\HomeController as GuestHomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\ProjectController as AdminProjectController;
+use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\Guest\ProjectController as GuestProjectController;
 use Illuminate\Support\Facades\Route;
 
@@ -45,6 +46,9 @@ Route::prefix('/admin')->name('admin.')->middleware('auth')->group(function () {
 
     // Rotta Admin project CRUD generale
     // Route::resource('projects', AdminProjectController::class);
+
+    // Rotta Admin type CRUD generale
+    Route::resource('types', TypeController::class);
 });
 
 Route::middleware('auth')->group(function () {
