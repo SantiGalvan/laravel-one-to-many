@@ -19,8 +19,9 @@ class DatabaseSeeder extends Seeder
             'email' => 'santi@santi.com',
         ]);
 
-        \App\Models\Project::factory(30)->create();
-
+        // Dobbiamo prima creare i tipi
         $this->call(TypeSeeder::class);
+
+        \App\Models\Project::factory(30)->create();
     }
 }
