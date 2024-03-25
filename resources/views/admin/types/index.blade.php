@@ -5,13 +5,13 @@
 @section('content')
     <section id="table-types">
       <div class="d-flex align-items-center justify-content-between">
-            <div>
-                <a href="{{route('admin.types.create')}}" class="btn btn-secondary"><i class="fas fa-plus me-2"></i>Crea Tipo</a>
-            </div>
 
-            <div class="text-start w-50">
-                <h1 class="my-4">Tipi</h1>
-            </div>
+        <a href="{{route('admin.projects.create')}}" class="btn btn-secondary"><i class="fas fa-plus me-2"></i>Crea Tipo</a>
+
+        <h1 class="my-4">Tipi</h1>
+
+        <a href="{{route('admin.projects.trash')}}" class="btn btn-danger"><i class="fas fa-trash me-2"></i>Vai al cestino</a>
+
       </div>
 
         <table class="table table-dark">
