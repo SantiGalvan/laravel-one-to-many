@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('label', 15)->unique();
             $table->char('color', 7)->default('#f8f8f8');
+            $table->text('description');
             $table->timestamps();
         });
     }
