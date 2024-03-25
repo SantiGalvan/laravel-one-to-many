@@ -3,7 +3,7 @@
 @section('title', 'Project')
 
 @section('content')
-    <section id="table-projects">
+    <section id="table-project">
         <h1 class="text-center my-4">{{$project->title}}</h1>
         <div class="card p-4">
             <div class="row">
