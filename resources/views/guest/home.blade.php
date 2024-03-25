@@ -11,8 +11,9 @@
         @forelse ($projects as $project)
         <div class="col-4">
             <div class="card my-4">
-                <div class="card-header text-center">
+                <div class="card-header text-center" style="background-color: {{$project->type?->color}}">
                     <h3>{{$project->title}}</h3>
+                    <h6>@if($project->type){{$project->type->label}}@else Nessun Tipo @endif</h6>
                 </div>
                 <div class="card-body text-center">
                     <img src="{{asset('storage/'. $project->image)}}" alt="{{$project->title}}" class="img-fluid mb-3">
