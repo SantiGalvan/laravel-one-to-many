@@ -27,6 +27,7 @@ class ProjectFactory extends Factory
         $img_url = Storage::putFileAs('project_images', fake()->image(null, 250, 250), "$title.png");
 
         $type_ids = Type::pluck('id')->toArray();
+        $type_ids[] = null;
 
         return [
             'title' => $title,
