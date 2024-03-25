@@ -101,4 +101,26 @@ class TypeController extends Controller
 
         return to_route('admin.types.index')->with('type', 'danger')->with('message', "Tipo: $type->label eliminato con successo");
     }
+
+    public function trash()
+    {
+        $types = Type::onlyTrashed()->get();
+        return view('admin.types.trash', compact('types'));
+    }
+
+    public function restore(string $id)
+    {
+        $type = Type::onlyTrashed()->findOrFail($id);
+        $type->restore();
+
+        return to_route('admin.types.index')->with('type', 'success')->with('message', 'Tipo ripristinato con successo');
+    }
+
+    public function drop(string $id)
+    {
+        $type = Type::onlyTrashed()->findOrFail($id);
+        $type->forceDelete();
+
+        return to_route('admin.types.trash')->with('type', 'danger')->with('message', 'Tipo eliminato definitivamente');
+    }
 }
