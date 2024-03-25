@@ -48,9 +48,9 @@ Route::prefix('/admin')->name('admin.')->middleware('auth')->group(function () {
     // Route::resource('projects', AdminProjectController::class);
 
     // Rotte per il cestino dei tipi
-    route::get('/types/trash', [AdminProjectController::class, 'trash'])->name('types.trash');
-    route::patch('/types/{project}/restore', [AdminProjectController::class, 'restore'])->name('types.restore');
-    route::delete('/types/{project}/drop', [AdminProjectController::class, 'drop'])->name('types.drop');
+    route::get('/types/trash', [TypeController::class, 'trash'])->name('types.trash');
+    route::patch('/types/{type}/restore', [TypeController::class, 'restore'])->name('types.restore');
+    route::delete('/types/{type}/drop', [TypeController::class, 'drop'])->name('types.drop');
 
     // Rotta Admin type CRUD generale
     Route::resource('types', TypeController::class)->withTrashed(['show', 'edit', 'update']);
